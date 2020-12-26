@@ -13,7 +13,7 @@ export default class App extends Component {
     super()
     this.state = {
       letterChoice: "-",
-      timer: "3:00",
+      timer: "2:30",
       itemArr: ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
       gameStarted: false
     }
@@ -25,7 +25,7 @@ export default class App extends Component {
       letterChoice: this.getRandomLetter(),
       itemArr: this.getItemArr(),
       gameStarted: true,
-      timer: "3:00",
+      timer: "2:30",
     })
   }
 
