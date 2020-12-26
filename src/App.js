@@ -20,7 +20,7 @@ export default class App extends Component {
     super()
     this.state = {
       letterChoice: "-",
-      timer: "0:15",
+      timer: "3:00",
       itemArr: ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
       gameStarted: false
     }
@@ -49,7 +49,7 @@ export default class App extends Component {
       this.setState({
         itemArr: this.getItemArr(),
         gameStarted: true,
-        timer: "0:15",
+        timer: "3:00",
       })
     }
   }
