@@ -25,6 +25,15 @@ img {
   height: 100%;
 }
 
+.timer{
+  text-align: left;
+  margin-left: 10%;
+}
+
+.center-div {
+  padding: 0 auto;
+}
+
 .outline {
   margin: 3% 2.5% 0% 2.5%;
   border: 5px black solid;
