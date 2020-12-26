@@ -4,7 +4,14 @@ import MainGrid from './components/MainGrid'
 import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 import { itemList } from './ItemList.js'
-const alert = new Audio('/ship_bell.mp3')
+import UIfx from 'uifx'
+import tickAudio from './sounds/tick.mp3'
+import endtickAudio from './sounds/endtick.mp3'
+import buzzerAudio from './sounds/buzzer.mp3'
+const tick = new UIfx(tickAudio,{volume: 0.4, throttleMs: 100})
+const endtick = new UIfx(endtickAudio,{volume: 0.2, throttleMs: 100})
+const buzzer = new UIfx(buzzerAudio,{volume: 0.075, throttleMs: 100})
+
 let timer;
 
 
@@ -13,26 +20,38 @@ export default class App extends Component {
     super()
     this.state = {
       letterChoice: "-",
-      timer: "2:30",
+      timer: "0:15",
       itemArr: ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
       gameStarted: false
     }
   }
 
   startGame = () => {
-    timer = setInterval(this.startTimer, 1000)
-    this.setState({
-      letterChoice: this.getRandomLetter(),
-      itemArr: this.getItemArr(),
-      gameStarted: true,
-      timer: "2:30",
-    })
+    this.cycleRandomLetters(150, "ABCDEFGHIJKLMNOPRSTVWY")
   }
 
-  getRandomLetter = () => {
-    const letterString = "ABCDEFGHIJKLMNOPRSTVWY"
+  getRandomLetter = (letterString) => {
     const index = Math.floor(Math.random() * letterString.length)
-    return letterString[index]
+    const chosenLetter = letterString[index]
+    this.setState({
+      letterChoice: chosenLetter
+    })
+    return letterString.replace(chosenLetter, "");
+  }
+
+  cycleRandomLetters = (i, letterString) => {
+    const newString = this.getRandomLetter(letterString)
+    tick.play()
+    if (i < 1000) {
+      setTimeout(() => this.cycleRandomLetters(i * 1.5, newString), i)
+    } else {
+      timer = setInterval(this.startTimer, 1000)
+      this.setState({
+        itemArr: this.getItemArr(),
+        gameStarted: true,
+        timer: "0:15",
+      })
+    }
   }
 
   getItemArr = () => {
@@ -65,6 +84,9 @@ export default class App extends Component {
     this.setState({
       timer: `${mins}:${secs}`
     })
+    if (mins === "0" && secs === 10){
+      endtick.play()
+    }
     if (mins === "0" && secs === "00"){
       this.resetGame()
     }
@@ -74,12 +96,11 @@ export default class App extends Component {
 
   resetGame = () => {
     clearInterval(timer)
-    alert.play()
+    buzzer.play()
     this.setState({
       gameStarted: false
     })
   }
-
 
 
   render() {
