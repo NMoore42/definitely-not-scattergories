@@ -30,22 +30,22 @@ function MainGrid({ gameState, startGame }) {
 
         <Grid.Row className="outline">
           <Grid.Column>
-            <p>{gameState.itemArr[0]}</p>
-            <p>{gameState.itemArr[1]}</p>
-            <p>{gameState.itemArr[2]}</p>
-            <p>{gameState.itemArr[3]}</p>
+            <p>1. {gameState.itemArr[0]}</p>
+            <p>2. {gameState.itemArr[1]}</p>
+            <p>3. {gameState.itemArr[2]}</p>
+            <p>4. {gameState.itemArr[3]}</p>
           </Grid.Column>
           <Grid.Column>
-            <p>{gameState.itemArr[4]}</p>
-            <p>{gameState.itemArr[5]}</p>
-            <p>{gameState.itemArr[6]}</p>
-            <p>{gameState.itemArr[7]}</p>
+            <p>5. {gameState.itemArr[4]}</p>
+            <p>6. {gameState.itemArr[5]}</p>
+            <p>7. {gameState.itemArr[6]}</p>
+            <p>8. {gameState.itemArr[7]}</p>
           </Grid.Column>
           <Grid.Column>
-            <p>{gameState.itemArr[8]}</p>
-            <p>{gameState.itemArr[9]}</p>
-            <p>{gameState.itemArr[10]}</p>
-            <p>{gameState.itemArr[11]}</p>
+            <p>9. {gameState.itemArr[8]}</p>
+            <p>10. {gameState.itemArr[9]}</p>
+            <p>11. {gameState.itemArr[10]}</p>
+            <p>12. {gameState.itemArr[11]}</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
